@@ -20,77 +20,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Scroll Animations
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.1
     };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // Stop observing once visible
             }
         });
     }, observerOptions);
 
-    const animateElements = document.querySelectorAll('.section, .hero__content, .hero__visual, .service-card, .project-card, .timeline__item');
-    animateElements.forEach(el => {
-        el.classList.add('fade-in');
-
-        // Check if already in viewport (fallback)
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight) {
-            el.classList.add('visible');
-        } else {
-            observer.observe(el);
-        }
+    const sections = document.querySelectorAll('.section, .hero__content, .hero__visual');
+    sections.forEach(section => {
+        section.classList.add('fade-in');
+        observer.observe(section);
     });
 
     // Form Submission
     const form = document.getElementById('quoteForm');
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', (e) => {
         e.preventDefault();
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
 
+        console.log('Form submitted:', data);
+
+        // Simulate submission
         const btn = form.querySelector('button[type="submit"]');
         const originalText = btn.innerText;
 
         btn.innerText = 'Enviando...';
         btn.disabled = true;
 
-        try {
-            const response = await fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-
-            if (response.ok) {
-                btn.innerText = '¡Mensaje Enviado!';
-                btn.style.backgroundColor = 'var(--secondary)';
-                form.reset();
-
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.disabled = false;
-                    btn.style.backgroundColor = '';
-                }, 5000);
-            } else {
-                throw new Error('Error en el envío');
-            }
-        } catch (error) {
-            btn.innerText = 'Error al enviar';
-            btn.style.backgroundColor = '#ff4444';
+        setTimeout(() => {
+            btn.innerText = '¡Mensaje Enviado!';
+            btn.style.backgroundColor = 'var(--secondary)';
+            form.reset();
 
             setTimeout(() => {
                 btn.innerText = originalText;
                 btn.disabled = false;
                 btn.style.backgroundColor = '';
             }, 3000);
-        }
+        }, 1500);
     });
 
     // --- PREMIUM FEATURES ---
