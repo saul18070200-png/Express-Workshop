@@ -378,21 +378,6 @@ label {
 
 /* Projects Section */
 .projects__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.project-card {
-    border-radius: 20px;
-    overflow: hidden;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-}
-
-.contact__form {
-    background: var(--bg-card);
-    padding: 40px;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
