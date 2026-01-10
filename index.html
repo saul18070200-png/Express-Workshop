@@ -7,8 +7,6 @@
     <title>NOVAX | Soluciones Digitales de Vanguardia</title>
     <meta name="description"
         content="Desarrollamos software moderno, escalable y diseñado para el crecimiento de tu empresa.">
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/images/logo.png">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -230,12 +228,7 @@
                     </ul>
                 </div>
                 <div class="contact__form">
-                    <form id="quoteForm" action="https://formsubmit.co/saul18070200@gmail.com" method="POST">
-                        <!-- FormSubmit Configuration -->
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_template" value="table">
-                        <input type="hidden" name="_subject" value="Nueva Cotización - NOVAX">
-
+                    <form id="quoteForm" action="https://formspree.io/f/xpwqjyzq" method="POST">
                         <div class="form-group">
                             <label for="name">Nombre Completo</label>
                             <input type="text" id="name" name="name" required placeholder="Tu nombre">
@@ -246,32 +239,18 @@
                         </div>
                         <div class="form-group">
                             <label for="service">Servicio de Interés</label>
-                            <div class="custom-select" id="serviceSelect">
-                                <div class="select-trigger">
-                                    <span>Selecciona un servicio</span>
-                                    <div class="arrow"></div>
-                                </div>
-                                <div class="select-options">
-                                    <div class="option" data-value="consulting">Consultoría en Transformación Digital
-                                    </div>
-                                    <div class="option" data-value="software">Ingeniería de Software a Medida</div>
-                                    <div class="option" data-value="ecommerce">Arquitectura de E-commerce de Alto
-                                        Rendimiento</div>
-                                    <div class="option" data-value="mobile">Desarrollo de Ecosistemas Móviles
-                                        (iOS/Android)</div>
-                                    <div class="option" data-value="ai">Implementación de Inteligencia Artificial
-                                        Aplicada</div>
-                                    <div class="option" data-value="automation">Automatización de Procesos Empresariales
-                                        (RPA)</div>
-                                    <div class="option" data-value="cybersecurity">Auditoría y Estrategia de
-                                        Ciberseguridad</div>
-                                    <div class="option" data-value="design">Diseño de Experiencia de Usuario (UX/UI) de
-                                        Élite</div>
-                                    <div class="option" data-value="support">Gestión y Soporte Técnico de Misión Crítica
-                                    </div>
-                                </div>
-                            </div>
-                            <input type="hidden" name="service" id="serviceInput" required>
+                            <select id="service" name="service">
+                                <option value="" disabled selected>Selecciona un servicio</option>
+                                <option value="software">Desarrollo de Software a Medida</option>
+                                <option value="mobile">Aplicaciones Móviles (iOS/Android)</option>
+                                <option value="ecommerce">Plataformas E-commerce de Lujo</option>
+                                <option value="ai">Inteligencia Artificial y ML</option>
+                                <option value="automation">Automatización de Procesos (RPA)</option>
+                                <option value="cybersecurity">Ciberseguridad y Auditoría</option>
+                                <option value="consulting">Consultoría de Transformación Digital</option>
+                                <option value="design">Diseño UI/UX de Vanguardia</option>
+                                <option value="support">Mantenimiento y Soporte Premium</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="message">Mensaje</label>
