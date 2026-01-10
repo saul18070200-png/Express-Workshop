@@ -37,6 +37,18 @@ body {
     /* For custom cursor */
 }
 
+/* Enforce custom cursor on all interactive elements */
+a,
+button,
+input,
+select,
+textarea,
+.option,
+.select-trigger,
+label {
+    cursor: none !important;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -50,6 +62,7 @@ body {
 .text-gradient {
     background: linear-gradient(90deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -103,9 +116,18 @@ body {
     pointer-events: none;
     z-index: 9999;
     mix-blend-mode: difference;
-    transition: transform 0.1s ease;
+    transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
     display: none;
     /* Hidden by default, shown via JS */
+}
+
+.custom-cursor.hover-active {
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 240, 255, 0.5);
+    border: 2px solid var(--primary);
+    transform: translate(-10px, -10px);
+    /* Center the larger cursor */
 }
 
 @media (min-width: 1024px) {

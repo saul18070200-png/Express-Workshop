@@ -296,4 +296,17 @@ document.addEventListener('DOMContentLoaded', () => {
             customSelect.classList.remove('active');
         });
     }
+
+    // 6. Custom Cursor Hover Effects
+    const customCursor = document.querySelector('.custom-cursor');
+    const interactiveElements = document.querySelectorAll('a, button, input, textarea, select, .option, .select-trigger, label');
+
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            customCursor.classList.add('hover-active');
+        });
+        el.addEventListener('mouseleave', () => {
+            customCursor.classList.remove('hover-active');
+        });
+    });
 });
