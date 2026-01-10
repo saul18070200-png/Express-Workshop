@@ -37,34 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 
-    // Form Submission
-    const form = document.getElementById('quoteForm');
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData);
+    // Form Submission handled natively by FormSubmit
 
-        console.log('Form submitted:', data);
-
-        // Simulate submission
-        const btn = form.querySelector('button[type="submit"]');
-        const originalText = btn.innerText;
-
-        btn.innerText = 'Enviando...';
-        btn.disabled = true;
-
-        setTimeout(() => {
-            btn.innerText = '¡Mensaje Enviado!';
-            btn.style.backgroundColor = 'var(--secondary)';
-            form.reset();
-
-            setTimeout(() => {
-                btn.innerText = originalText;
-                btn.disabled = false;
-                btn.style.backgroundColor = '';
-            }, 3000);
-        }, 1500);
-    });
 
     // --- PREMIUM FEATURES ---
 
