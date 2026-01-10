@@ -246,18 +246,31 @@
                         </div>
                         <div class="form-group">
                             <label for="service">Servicio de Interés</label>
-                            <select id="service" name="service" required>
-                                <option value="" disabled selected>Selecciona un servicio</option>
-                                <option value="consulting">Consultoría en Transformación Digital</option>
-                                <option value="software">Ingeniería de Software a Medida</option>
-                                <option value="ecommerce">Arquitectura de E-commerce de Alto Rendimiento</option>
-                                <option value="mobile">Desarrollo de Ecosistemas Móviles (iOS/Android)</option>
-                                <option value="ai">Implementación de Inteligencia Artificial Aplicada</option>
-                                <option value="automation">Automatización de Procesos Empresariales (RPA)</option>
-                                <option value="cybersecurity">Auditoría y Estrategia de Ciberseguridad</option>
-                                <option value="design">Diseño de Experiencia de Usuario (UX/UI) de Élite</option>
-                                <option value="support">Gestión y Soporte Técnico</option>
-                            </select>
+                            <div class="custom-select" id="serviceSelect">
+                                <div class="select-trigger">
+                                    <span>Selecciona un servicio</span>
+                                    <div class="arrow"></div>
+                                </div>
+                                <div class="select-options">
+                                    <div class="option" data-value="consulting">Consultoría en Transformación Digital
+                                    </div>
+                                    <div class="option" data-value="software">Ingeniería de Software a Medida</div>
+                                    <div class="option" data-value="ecommerce">Arquitectura de E-commerce de Alto
+                                        Rendimiento</div>
+                                    <div class="option" data-value="mobile">Desarrollo de Ecosistemas Móviles
+                                        (iOS/Android)</div>
+                                    <div class="option" data-value="ai">Implementación de Inteligencia Artificial
+                                        Aplicada</div>
+                                    <div class="option" data-value="automation">Automatización de Procesos Empresariales
+                                        (RPA)</div>
+                                    <div class="option" data-value="cybersecurity">Auditoría y Estrategia de
+                                        Ciberseguridad</div>
+                                    <div class="option" data-value="design">Diseño de Experiencia de Usuario (UX/UI) de
+                                        Élite</div>
+                                    <div class="option" data-value="support">Gestión y Soporte Técnico</div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="service" id="serviceInput" required>
                         </div>
                         <div class="form-group">
                             <label for="message">Mensaje</label>

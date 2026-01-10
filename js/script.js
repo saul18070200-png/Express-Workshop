@@ -258,4 +258,42 @@ document.addEventListener('DOMContentLoaded', () => {
             orb.classList.remove('active');
         });
     }
+    // 5. Custom Dropdown Logic
+    const customSelect = document.getElementById('serviceSelect');
+    if (customSelect) {
+        const trigger = customSelect.querySelector('.select-trigger');
+        const triggerText = trigger.querySelector('span');
+        const options = customSelect.querySelectorAll('.option');
+        const hiddenInput = document.getElementById('serviceInput');
+
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            customSelect.classList.toggle('active');
+        });
+
+        options.forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const value = option.getAttribute('data-value');
+                const text = option.innerText;
+
+                // Update UI
+                options.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                triggerText.innerText = text;
+                triggerText.style.color = 'var(--text-main)';
+
+                // Update Hidden Input
+                hiddenInput.value = value;
+
+                // Close dropdown
+                customSelect.classList.remove('active');
+            });
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', () => {
+            customSelect.classList.remove('active');
+        });
+    }
 });
