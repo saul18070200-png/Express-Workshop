@@ -171,10 +171,44 @@ label {
     font-weight: 500;
     transition: var(--transition);
     font-size: 0.95rem;
+    position: relative;
+    padding: 8px 0;
 }
 
-.nav__link:hover {
+.nav__link:not(.btn)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: var(--transition);
+}
+
+.nav__link:not(.btn):hover {
     color: var(--primary);
+}
+
+.nav__link:not(.btn):hover::after {
+    width: 100%;
+}
+
+/* Nav CTA Stylized */
+.nav__list li:last-child .nav__link.btn {
+    padding: 10px 24px;
+    border-radius: 50px;
+    background: var(--primary);
+    color: #000;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(0, 240, 255, 0.2);
+    border: none;
+}
+
+.nav__list li:last-child .nav__link.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 240, 255, 0.4);
+    background: #00e0ff;
 }
 
 .mobile-menu-btn {
