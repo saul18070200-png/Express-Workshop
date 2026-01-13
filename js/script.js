@@ -81,12 +81,14 @@ document.addEventListener('DOMContentLoaded', () => {
             !priorityEls.includes(el)
         );
 
-        // 2. Load priority images in parallel immediately (since they are preloaded or visible)
-        await Promise.all(priorityEls.map(el => loadBackground(el)));
+        // 2. Trigger priority images INSTANTLY (non-blocking)
+        priorityEls.forEach(el => loadBackground(el));
 
-        // 3. Load the rest sequentially to avoid network congestion
+        // 3. Start loading others in background without blocking interaction
         for (const el of otherEls) {
             await loadBackground(el);
+            // Small wait to prioritize main thread for a frame
+            await new Promise(r => setTimeout(r, 50));
         }
     }
 
