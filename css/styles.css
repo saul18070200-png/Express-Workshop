@@ -303,21 +303,42 @@ label {
     flex-direction: column;
 }
 
+/* Performance: Skeleton & Lazy Loading */
+.skeleton {
+    background: linear-gradient(90deg, #121212 25%, #1a1a1a 50%, #121212 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.lazy-bg {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.lazy-bg.loaded {
+    opacity: 1;
+}
+
 .feature-mockup {
     height: 180px;
-    background: #1a1a1a;
+    background-color: #1a1a1a;
     background-size: cover;
     background-position: center;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, opacity 0.8s ease-in-out;
 }
 
-.mockup-scalability {
-    background-image: url('../assets/images/feature_scalability.png');
-}
+/* Specific background-images are now handled via JS data-bg */
 
-.mockup-security {
-    background-image: url('../assets/images/feature_security.png');
-}
 
 .feature-card:hover .feature-mockup {
     transform: scale(1.1);
@@ -353,22 +374,10 @@ label {
 
 .service-mockup {
     height: 200px;
-    background: #1a1a1a;
+    background-color: #1a1a1a;
     background-size: cover;
     background-position: center;
-    transition: transform 0.5s ease;
-}
-
-.mockup-web {
-    background-image: url('../assets/images/service_web.png');
-}
-
-.mockup-mobile {
-    background-image: url('../assets/images/service_mobile.png');
-}
-
-.mockup-automation-service {
-    background-image: url('../assets/images/project3.png');
+    transition: transform 0.5s ease, opacity 0.8s ease-in-out;
 }
 
 .mockup-consulting {
@@ -521,22 +530,10 @@ label {
 
 .project-mockup {
     height: 220px;
-    background: #1a1a1a;
+    background-color: #1a1a1a;
     background-size: cover;
     background-position: center;
-    transition: transform 0.5s ease;
-}
-
-.mockup-1 {
-    background-image: url('../assets/images/project1.png');
-}
-
-.mockup-2 {
-    background-image: url('../assets/images/project2.png');
-}
-
-.mockup-3 {
-    background-image: url('../assets/images/project3.png');
+    transition: transform 0.5s ease, opacity 0.8s ease-in-out;
 }
 
 .project-card:hover .project-mockup {

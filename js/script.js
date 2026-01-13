@@ -37,6 +37,49 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 
+    // Lazy Loading for Background Images
+    const lazyBackgrounds = document.querySelectorAll('.lazy-bg');
+
+    if ('IntersectionObserver' in window) {
+        let lazyBackgroundObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    let lazyBackground = entry.target;
+                    const bgUrl = lazyBackground.getAttribute('data-bg');
+
+                    if (bgUrl) {
+                        // Create a temporary image to check when it's fully downloaded
+                        const tempImg = new Image();
+                        tempImg.src = bgUrl;
+                        tempImg.onload = () => {
+                            lazyBackground.style.backgroundImage = `url(${bgUrl})`;
+                            lazyBackground.classList.remove('skeleton');
+                            lazyBackground.classList.add('loaded');
+                        };
+                    }
+
+                    lazyBackgroundObserver.unobserve(lazyBackground);
+                }
+            });
+        }, {
+            rootMargin: '0px 0px 300px 0px' // Start loading 300px before it enters
+        });
+
+        lazyBackgrounds.forEach((lazyBackground) => {
+            lazyBackgroundObserver.observe(lazyBackground);
+        });
+    } else {
+        // Fallback for older browsers
+        lazyBackgrounds.forEach((lazyBackground) => {
+            const bgUrl = lazyBackground.getAttribute('data-bg');
+            if (bgUrl) {
+                lazyBackground.style.backgroundImage = `url(${bgUrl})`;
+                lazyBackground.classList.remove('skeleton');
+                lazyBackground.classList.add('loaded');
+            }
+        });
+    }
+
     // Form Submission handled natively by FormSubmit
 
 
