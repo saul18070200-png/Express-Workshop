@@ -47,53 +47,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Optimized Sequential Loading for Background Images
-    const lazyBackgrounds = Array.from(document.querySelectorAll('.lazy-bg'));
-
-    // Priority list: these load first
-    const priorityUrls = [
-        'assets/images/feature_scalability_small.png',
-        'assets/images/feature_security_small.png'
-    ];
-
-    function loadBackground(el) {
-        return new Promise((resolve) => {
-            const bgUrl = el.getAttribute('data-bg');
-            if (!bgUrl) return resolve();
-
-            const tempImg = new Image();
-            tempImg.src = bgUrl;
-            tempImg.onload = () => {
-                el.style.backgroundImage = `url(${bgUrl})`;
-                el.classList.remove('skeleton');
-                el.classList.add('loaded');
-                resolve();
-            };
-            tempImg.onerror = () => resolve(); // Don't block queue on error
-        });
-    }
-
-    async function processQueue() {
-        // 1. Separate priority elements
-        const priorityEls = lazyBackgrounds.filter(el =>
-            priorityUrls.includes(el.getAttribute('data-bg'))
-        );
-        const otherEls = lazyBackgrounds.filter(el =>
-            !priorityEls.includes(el)
-        );
-
-        // 2. Trigger priority images INSTANTLY (non-blocking)
-        priorityEls.forEach(el => loadBackground(el));
-
-        // 3. Start loading others in background without blocking interaction
-        for (const el of otherEls) {
-            await loadBackground(el);
-            // Small wait to prioritize main thread for a frame
-            await new Promise(r => setTimeout(r, 50));
+    // Simplified Image Loading (Restore Native Speed)
+    const lazyBackgrounds = document.querySelectorAll('.lazy-bg');
+    lazyBackgrounds.forEach(el => {
+        const bgUrl = el.getAttribute('data-bg');
+        if (bgUrl) {
+            el.style.backgroundImage = `url(${bgUrl})`;
+            el.classList.remove('skeleton');
+            // Immediate opacity for speed
+            el.style.opacity = '1';
         }
-    }
-
-    // Start loading process
-    processQueue();
+    });
 
     // Form Submission handled natively by FormSubmit
 
