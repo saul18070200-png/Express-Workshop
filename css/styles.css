@@ -351,10 +351,44 @@ label {
 
 .service-card {
     background: var(--bg-card);
-    padding: 40px;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     transition: var(--transition);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-mockup {
+    height: 160px;
+    background: #1a1a1a;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+}
+
+.mockup-web {
+    background-image: url('../assets/images/service_web.png');
+}
+
+.mockup-mobile {
+    background-image: url('../assets/images/service_mobile.png');
+}
+
+.mockup-automation-service {
+    background-image: url('../assets/images/project3.png');
+}
+
+.mockup-consulting {
+    background: linear-gradient(135deg, #101622 0%, #1e293b 100%);
+}
+
+.service-card:hover .service-mockup {
+    transform: scale(1.1);
+}
+
+.service-content {
+    padding: 30px;
 }
 
 .service-card:hover {
