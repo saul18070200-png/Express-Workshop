@@ -1,8 +1,12 @@
+// 1. Force Scroll to Top and Disable Browser Restoration ASAP
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Fix initial scroll position
-    if (!window.location.hash) {
-        window.scrollTo(0, 0);
-    }
+    // Re-verify top position after DOM is ready
+    window.scrollTo(0, 0);
 
     console.log('NOVAX loaded');
 
@@ -47,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Priority list: these load first
     const priorityUrls = [
-        'assets/images/feature_scalability.png',
-        'assets/images/feature_security.png'
+        'assets/images/feature_scalability_small.png',
+        'assets/images/feature_security_small.png'
     ];
 
     function loadBackground(el) {

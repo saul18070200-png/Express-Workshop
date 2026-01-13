@@ -21,7 +21,13 @@
     <link rel="preload" as="image" href="assets/images/feature_security.png">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/styles.css?v=2.9">
+    <link rel="stylesheet" href="css/styles.css?v=3.0">
+
+    <!-- Immediate UX Fix: Scroll to top before render -->
+    <script>
+        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+        window.scrollTo(0, 0);
+    </script>
 </head>
 
 <body>
@@ -93,15 +99,16 @@
                 </div>
                 <div class="about__features">
                     <div class="feature-card">
-                        <div class="feature-mockup lazy-bg skeleton" data-bg="assets/images/feature_scalability.png">
-                        </div>
+                        <div class="feature-mockup lazy-bg skeleton"
+                            data-bg="assets/images/feature_scalability_small.png"></div>
                         <div class="feature-content">
                             <h3>Escalabilidad</h3>
                             <p>Sistemas que crecen junto con tu negocio.</p>
                         </div>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-mockup lazy-bg skeleton" data-bg="assets/images/feature_security.png"></div>
+                        <div class="feature-mockup lazy-bg skeleton" data-bg="assets/images/feature_security_small.png">
+                        </div>
                         <div class="feature-content">
                             <h3>Seguridad</h3>
                             <p>Protección de datos y robustez técnica.</p>
@@ -236,21 +243,21 @@
                 </h2>
                 <div class="projects__grid">
                     <div class="project-card">
-                        <div class="project-mockup lazy-bg skeleton" data-bg="assets/images/project1.png"></div>
+                        <div class="project-mockup lazy-bg skeleton" data-bg="assets/images/project1_small.png"></div>
                         <div class="project-info">
                             <h3>Plataforma Empresarial</h3>
                             <p>Sistema de gestión integral.</p>
                         </div>
                     </div>
                     <div class="project-card">
-                        <div class="project-mockup lazy-bg skeleton" data-bg="assets/images/project2.png"></div>
+                        <div class="project-mockup lazy-bg skeleton" data-bg="assets/images/project2_small.png"></div>
                         <div class="project-info">
                             <h3>App de Servicios</h3>
                             <p>Experiencia móvil fluida.</p>
                         </div>
                     </div>
                     <div class="project-card">
-                        <div class="project-mockup lazy-bg skeleton" data-bg="assets/images/project3.png"></div>
+                        <div class="project-mockup lazy-bg skeleton" data-bg="assets/images/project3_small.png"></div>
                         <div class="project-info">
                             <h3>Automatización</h3>
                             <p>Optimización de procesos industriales.</p>
@@ -368,7 +375,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="js/script.js?v=2.9"></script>
+    <script src="js/script.js?v=3.0"></script>
 </body>
 
 </html>
