@@ -392,12 +392,27 @@ label {
 }
 
 .project-mockup {
-    height: 200px;
+    height: 220px;
     background: #1a1a1a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+}
+
+.mockup-1 {
+    background-image: url('../assets/images/project1.png');
+}
+
+.mockup-2 {
+    background-image: url('../assets/images/project2.png');
+}
+
+.mockup-3 {
+    background-image: url('../assets/images/project3.png');
+}
+
+.project-card:hover .project-mockup {
+    transform: scale(1.05);
 }
 
 .project-info {
