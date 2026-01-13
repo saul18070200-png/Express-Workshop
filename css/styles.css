@@ -331,11 +331,21 @@ label {
 
 .feature-mockup {
     height: 180px;
-    background-color: #1a1a1a;
+    background-color: #0d1117;
+    /* Slate dark fallback */
     background-size: cover;
     background-position: center;
     transition: transform 0.5s ease, opacity 0.8s ease-in-out;
 }
+
+.feature-mockup[data-bg*="scalability"] {
+    background-color: #0a192f;
+}
+
+.feature-mockup[data-bg*="security"] {
+    background-color: #0d1b2a;
+}
+
 
 /* Specific background-images are now handled via JS data-bg */
 
@@ -374,11 +384,20 @@ label {
 
 .service-mockup {
     height: 200px;
-    background-color: #1a1a1a;
+    background-color: #0d1117;
     background-size: cover;
     background-position: center;
     transition: transform 0.5s ease, opacity 0.8s ease-in-out;
 }
+
+.service-mockup[data-bg*="web"] {
+    background-color: #112240;
+}
+
+.service-mockup[data-bg*="mobile"] {
+    background-color: #0a192f;
+}
+
 
 .mockup-consulting {
     background: linear-gradient(135deg, #101622 0%, #1e293b 100%);
@@ -535,6 +554,15 @@ label {
     background-position: center;
     transition: transform 0.5s ease, opacity 0.8s ease-in-out;
 }
+
+.project-mockup[data-bg*="project1"] {
+    background-color: #0b1423;
+}
+
+.project-mockup[data-bg*="project2"] {
+    background-color: #161b22;
+}
+
 
 .project-card:hover .project-mockup {
     transform: scale(1.05);

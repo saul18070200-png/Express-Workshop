@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Fix initial scroll position
+    if (!window.location.hash) {
+        window.scrollTo(0, 0);
+    }
+
     console.log('NOVAX loaded');
 
     // Mobile Menu
@@ -37,48 +42,52 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 
-    // Lazy Loading for Background Images
-    const lazyBackgrounds = document.querySelectorAll('.lazy-bg');
+    // Optimized Sequential Loading for Background Images
+    const lazyBackgrounds = Array.from(document.querySelectorAll('.lazy-bg'));
 
-    if ('IntersectionObserver' in window) {
-        let lazyBackgroundObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    let lazyBackground = entry.target;
-                    const bgUrl = lazyBackground.getAttribute('data-bg');
+    // Priority list: these load first
+    const priorityUrls = [
+        'assets/images/feature_scalability.png',
+        'assets/images/feature_security.png'
+    ];
 
-                    if (bgUrl) {
-                        // Create a temporary image to check when it's fully downloaded
-                        const tempImg = new Image();
-                        tempImg.src = bgUrl;
-                        tempImg.onload = () => {
-                            lazyBackground.style.backgroundImage = `url(${bgUrl})`;
-                            lazyBackground.classList.remove('skeleton');
-                            lazyBackground.classList.add('loaded');
-                        };
-                    }
+    function loadBackground(el) {
+        return new Promise((resolve) => {
+            const bgUrl = el.getAttribute('data-bg');
+            if (!bgUrl) return resolve();
 
-                    lazyBackgroundObserver.unobserve(lazyBackground);
-                }
-            });
-        }, {
-            rootMargin: '0px 0px 300px 0px' // Start loading 300px before it enters
-        });
-
-        lazyBackgrounds.forEach((lazyBackground) => {
-            lazyBackgroundObserver.observe(lazyBackground);
-        });
-    } else {
-        // Fallback for older browsers
-        lazyBackgrounds.forEach((lazyBackground) => {
-            const bgUrl = lazyBackground.getAttribute('data-bg');
-            if (bgUrl) {
-                lazyBackground.style.backgroundImage = `url(${bgUrl})`;
-                lazyBackground.classList.remove('skeleton');
-                lazyBackground.classList.add('loaded');
-            }
+            const tempImg = new Image();
+            tempImg.src = bgUrl;
+            tempImg.onload = () => {
+                el.style.backgroundImage = `url(${bgUrl})`;
+                el.classList.remove('skeleton');
+                el.classList.add('loaded');
+                resolve();
+            };
+            tempImg.onerror = () => resolve(); // Don't block queue on error
         });
     }
+
+    async function processQueue() {
+        // 1. Separate priority elements
+        const priorityEls = lazyBackgrounds.filter(el =>
+            priorityUrls.includes(el.getAttribute('data-bg'))
+        );
+        const otherEls = lazyBackgrounds.filter(el =>
+            !priorityEls.includes(el)
+        );
+
+        // 2. Load priority images in parallel immediately (since they are preloaded or visible)
+        await Promise.all(priorityEls.map(el => loadBackground(el)));
+
+        // 3. Load the rest sequentially to avoid network congestion
+        for (const el of otherEls) {
+            await loadBackground(el);
+        }
+    }
+
+    // Start loading process
+    processQueue();
 
     // Form Submission handled natively by FormSubmit
 
