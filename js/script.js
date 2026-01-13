@@ -40,24 +40,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    const sections = document.querySelectorAll('.section, .hero__content, .hero__visual');
+    // Initial fold elements should be visible instantly
+    const sections = document.querySelectorAll('.section:not(.hero)');
     sections.forEach(section => {
         section.classList.add('fade-in');
         observer.observe(section);
     });
 
-    // Optimized Sequential Loading for Background Images
-    // Simplified Image Loading (Restore Native Speed)
-    const lazyBackgrounds = document.querySelectorAll('.lazy-bg');
-    lazyBackgrounds.forEach(el => {
-        const bgUrl = el.getAttribute('data-bg');
-        if (bgUrl) {
-            el.style.backgroundImage = `url(${bgUrl})`;
-            el.classList.remove('skeleton');
-            // Immediate opacity for speed
-            el.style.opacity = '1';
-        }
-    });
+    // Logo and Hero are native, no JS needed for visibility.
 
     // Form Submission handled natively by FormSubmit
 
