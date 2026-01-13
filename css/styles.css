@@ -303,39 +303,18 @@ label {
     flex-direction: column;
 }
 
-/* Performance: Skeleton & Lazy Loading */
-.skeleton {
-    background: linear-gradient(90deg, #121212 25%, #1a1a1a 50%, #121212 75%);
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite linear;
-}
-
-@keyframes shimmer {
-    0% {
-        background-position: -200% 0;
-    }
-
-    100% {
-        background-position: 200% 0;
-    }
-}
-
+/* Performance: Instant Loading (v3.4) */
 .lazy-bg {
-    opacity: 0;
-    transition: opacity 0.8s ease-in-out;
-}
-
-.lazy-bg.loaded {
-    opacity: 1;
+    opacity: 1 !important;
+    transition: none !important;
 }
 
 .feature-mockup {
     height: 180px;
     background-color: #0d1117;
-    /* Slate dark fallback */
     background-size: cover;
     background-position: center;
-    transition: transform 0.5s ease, opacity 0.8s ease-in-out;
+    transition: transform 0.3s ease;
 }
 
 .feature-mockup[data-bg*="scalability"] {
