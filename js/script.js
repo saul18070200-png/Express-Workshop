@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function initParticles() {
             particles = [];
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 120; i++) {
                 particles.push(new Particle());
             }
         }
