@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Typing Animation
     const typingText = document.getElementById('typing-text');
-    const phrases = ["impulsa tu negocio", "crea el futuro", "escala sin límites", "vende más"];
+    const phrases = ["lidera la vanguardia tecnológica", "escala arquitecturas robustas", "potencia sistemas críticos", "diseña soluciones de élite"];
     let phraseIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
@@ -245,15 +245,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     // 5. Custom Dropdown Logic
-    const customSelect = document.getElementById('serviceSelect');
-    if (customSelect) {
+    // Generic Custom Dropdown Logic
+    function setupCustomSelect(selectId, inputId) {
+        const customSelect = document.getElementById(selectId);
+        if (!customSelect) return;
+
         const trigger = customSelect.querySelector('.select-trigger');
         const triggerText = trigger.querySelector('span');
         const options = customSelect.querySelectorAll('.option');
-        const hiddenInput = document.getElementById('serviceInput');
+        const hiddenInput = document.getElementById(inputId);
 
         trigger.addEventListener('click', (e) => {
             e.stopPropagation();
+            // Close other selects
+            document.querySelectorAll('.custom-select').forEach(s => {
+                if (s !== customSelect) s.classList.remove('active');
+            });
             customSelect.classList.toggle('active');
         });
 
@@ -263,26 +270,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 const value = option.getAttribute('data-value');
                 const text = option.innerText;
 
-                // Update UI
                 options.forEach(opt => opt.classList.remove('selected'));
                 option.classList.add('selected');
                 triggerText.innerText = text;
                 triggerText.style.color = 'var(--text-main)';
-
-                // Update Hidden Input
                 hiddenInput.value = value;
-
-                // Close dropdown
                 customSelect.classList.remove('active');
             });
         });
-
-        // Close when clicking outside
-        document.addEventListener('click', () => {
-            customSelect.classList.remove('active');
-        });
     }
 
+    setupCustomSelect('serviceSelect', 'serviceInput');
+    setupCustomSelect('budgetSelect', 'budgetInput');
+
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.custom-select').forEach(s => s.classList.remove('active'));
+    });
     // 6. Custom Cursor Hover Effects
     const customCursor = document.querySelector('.custom-cursor');
     const interactiveElements = document.querySelectorAll('a, button, input, textarea, select, .option, .select-trigger, label');

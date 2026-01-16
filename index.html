@@ -48,10 +48,10 @@
             <nav class="nav">
                 <ul class="nav__list">
                     <li><a href="#about" class="nav__link">Nosotros</a></li>
-                    <li><a href="#services" class="nav__link">Servicios</a></li>
+                    <li><a href="#services" class="nav__link">Soluciones</a></li>
                     <li><a href="#process" class="nav__link">Proceso</a></li>
-                    <li><a href="#projects" class="nav__link">Casos</a></li>
-                    <li><a href="#contact" class="nav__link btn btn--primary">Cotizar</a></li>
+                    
+                    <li><a href="#contact" class="nav__link btn btn--primary">Iniciar Consultoría</a></li>
                 </ul>
             </nav>
             <button class="mobile-menu-btn" aria-label="Abrir menú">
@@ -69,15 +69,14 @@
             <div class="container hero__container">
                 <div class="hero__content">
                     <h1 class="hero__title">
-                        Desarrollamos software que <span class="text-gradient" id="typing-text"></span><span
-                            class="cursor-blink">|</span>
-                    </h1>
+        Ingeniería de Software que <span class="text-gradient" id="typing-text"></span><span class="cursor-blink">|</span>
+    </h1>
                     <p class="hero__subtitle">
-                        Soluciones digitales modernas, escalables y diseñadas para crecer.
-                    </p>
+        Desarrollamos sistemas escalables, arquitecturas robustas y soluciones digitales para empresas que demandan excelencia técnica y resultados estratégicos.
+    </p>
                     <div class="hero__actions">
-                        <a href="#contact" class="btn btn--primary">Solicitar cotización</a>
-                        <a href="#services" class="btn btn--secondary">Ver servicios</a>
+                        <a href="#contact" class="btn btn--primary">Agendar Consulta de Proyecto</a>
+                        <a href="#services" class="btn btn--secondary">Explorar Soluciones</a>
                     </div>
                 </div>
                 <div class="hero__visual">
@@ -281,14 +280,7 @@
                     </p>
                     <ul class="contact__list">
                         <li>📍 Querétaro, Querétaro, México</li>
-                        <li>📱 WhatsApp: +52 442 425 3643</li>
-                        <li style="margin-top: 20px;">
-                            <a href="https://wa.me/524424253643" target="_blank" class="btn btn--primary"
-                                style="display: inline-flex; align-items: center; gap: 10px;">
-                                <span>Chatear en WhatsApp</span>
-                            </a>
-                        </li>
-                    </ul>
+                        </ul>
                 </div>
                 <div class="contact__form">
                     <form id="quoteForm" action="https://formsubmit.co/saul18070200@gmail.com" method="POST">
@@ -304,6 +296,10 @@
                         <div class="form-group">
                             <label for="email">Correo Electrónico</label>
                             <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Empresa / Organización</label>
+                            <input type="text" id="company" name="company" required placeholder="Nombre de tu empresa">
                         </div>
                         <div class="form-group">
                             <label for="service">Servicio de Interés</label>
@@ -333,6 +329,24 @@
                                 </div>
                             </div>
                             <input type="hidden" name="service" id="serviceInput" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="budget">Presupuesto Estimado (Piso de inversión)</label>
+                            <div class="custom-select" id="budgetSelect">
+                                <div class="select-trigger">
+                                    <span>Selecciona un rango</span>
+                                    <div class="arrow"></div>
+                                </div>
+                                <div class="select-options">
+                                    <div class="option" data-value="20k-50k">$20,000 - $50,000 MXN</div>
+                                    <div class="option" data-value="50k-100k">$50,000 - $100,000 MXN</div>
+                                    <div class="option" data-value="100k-200k">$100,000 - $200,000 MXN</div>
+                                    <div class="option" data-value="200k+">$200,000+ MXN</div>
+                                    <div class="option" data-value="not_defined">Presupuesto no definido (Sujeto a análisis)</div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="budget" id="budgetInput" required>
                         </div>
                         <div class="form-group">
                             <label for="message">Detalles del Proyecto</label>
