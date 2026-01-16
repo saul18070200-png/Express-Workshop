@@ -378,9 +378,7 @@ label {
 }
 
 
-.mockup-consulting {
-    background: linear-gradient(135deg, #101622 0%, #1e293b 100%);
-}
+
 
 .service-card:hover .service-mockup {
     transform: scale(1.1);
