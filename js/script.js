@@ -199,8 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (cursor) {
         window.addEventListener('mousemove', (e) => {
-            cursor.style.left = `${e.clientX}px`;
-            cursor.style.top = `${e.clientY}px`;
+            cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
         });
 
         const interactiveElements = document.querySelectorAll('a, button, .service-card, .project-card, input, select, textarea, .custom-select');

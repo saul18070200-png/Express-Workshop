@@ -107,27 +107,30 @@ label {
 }
 
 /* Minimalist Cursor */
+/* Minimalist Cursor */
 .custom-cursor-dot {
-    width: 6px;
-    height: 6px;
+    width: 10px;
+    height: 10px;
     background: var(--primary);
+    border: 1.5px solid white;
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
     z-index: 10000;
     transition: transform 0.2s ease, opacity 0.2s ease;
-    display: none;
     transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
 }
 
 .custom-cursor-dot.active {
-    transform: translate(-50%, -50%) scale(4);
-    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0.6;
 }
 
-@media (min-width: 1024px) {
+/* Hide on touch devices if preferred, but keep visible for mouse users */
+@media (hover: none) and (pointer: coarse) {
     .custom-cursor-dot {
-        display: block;
+        display: none;
     }
 }
 
