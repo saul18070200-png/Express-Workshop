@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Typing Animation
     const typingText = document.getElementById('typing-text');
-    const phrases = ["lidera la vanguardia tecnológica", "escala arquitecturas robustas", "potencia sistemas críticos", "diseña soluciones de élite"];
+    const phrases = ["potencia sistemas críticos", "construye arquitectura de élite", "escala sin improvisar", "diseña alta ingeniería"];
     let phraseIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
@@ -194,16 +194,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. Custom Cursor Logic
-    const cursor = document.querySelector('.custom-cursor');
+    // 4. Simplified Cursor Logic
+    const cursor = document.querySelector('.custom-cursor-dot');
+
     if (cursor) {
         window.addEventListener('mousemove', (e) => {
-            const x = e.clientX;
-            const y = e.clientY;
-            cursor.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
         });
 
-        const interactiveElements = document.querySelectorAll('a, button, .service-card, .project-card, input, select, textarea');
+        const interactiveElements = document.querySelectorAll('a, button, .service-card, .project-card, input, select, textarea, .custom-select');
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => cursor.classList.add('active'));
             el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
