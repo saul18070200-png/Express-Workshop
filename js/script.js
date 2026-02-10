@@ -1,9 +1,7 @@
-// 1. Handle Safari bfcache (back-forward cache) to prevent reload freeze
-window.addEventListener('pageshow', (event) => {
-    if (event.persisted) {
-        // Page was restored from bfcache - force clean reload
-        window.location.reload();
-    }
+// 1. Prevent Safari bfcache to avoid reload freeze
+// Using unload event tells Safari not to cache this page
+window.addEventListener('unload', () => {
+    // Empty handler - just the presence of this prevents bfcache
 });
 
 // 2. Force Scroll to Top and Disable Browser Restoration
