@@ -46,14 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 
-    // Logo and Hero are native, no JS needed for visibility.
-
-    // Form Submission handled natively by FormSubmit
-
-
-    // --- PREMIUM FEATURES ---
-
-    // 1. Typing Animation
+    // Typing Animation
     const typingText = document.getElementById('typing-text');
     const phrases = ["potencia sistemas críticos", "construye arquitectura de élite", "escala sin improvisar", "diseña alta ingeniería"];
     let phraseIndex = 0;
@@ -193,9 +186,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. Simplified Cursor Logic
+    // Cursor Logic
     const cursor = document.querySelector('.custom-cursor-dot');
-
     if (cursor) {
         window.addEventListener('mousemove', (e) => {
             cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
@@ -208,14 +200,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. Magnetic Buttons
+    // Magnetic Buttons
     const magneticButtons = document.querySelectorAll('.btn');
     magneticButtons.forEach(btn => {
         btn.addEventListener('mousemove', (e) => {
             const rect = btn.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
-
             btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
         });
 
@@ -224,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 6. Interactive Tech Orb
+    // Tech Orb
     const orb = document.querySelector('.tech-orb');
     const hero = document.querySelector('.hero');
     if (orb && hero) {
@@ -232,7 +223,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const rect = hero.getBoundingClientRect();
             const x = (e.clientX - rect.left) / rect.width - 0.5;
             const y = (e.clientY - rect.top) / rect.height - 0.5;
-
             orb.style.transform = `translate(${x * 50}px, ${y * 50}px)`;
             orb.classList.add('active');
         });
@@ -242,8 +232,8 @@ document.addEventListener('DOMContentLoaded', () => {
             orb.classList.remove('active');
         });
     }
-    // 5. Custom Dropdown Logic
-    // Generic Custom Dropdown Logic
+
+    // Custom Selects
     function setupCustomSelect(selectId, inputId) {
         const customSelect = document.getElementById(selectId);
         if (!customSelect) return;
@@ -255,7 +245,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         trigger.addEventListener('click', (e) => {
             e.stopPropagation();
-            // Close other selects
             document.querySelectorAll('.custom-select').forEach(s => {
                 if (s !== customSelect) s.classList.remove('active');
             });
@@ -267,7 +256,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.stopPropagation();
                 const value = option.getAttribute('data-value');
                 const text = option.innerText;
-
                 options.forEach(opt => opt.classList.remove('selected'));
                 option.classList.add('selected');
                 triggerText.innerText = text;
