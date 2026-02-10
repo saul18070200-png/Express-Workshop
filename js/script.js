@@ -1,11 +1,10 @@
-// 1. Force Scroll to Top and Disable Browser Restoration ASAP
+// 1. Force Scroll to Top and Disable Browser Restoration
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
-window.scrollTo(0, 0);
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Re-verify top position after DOM is ready
+    // Verify top position after DOM is ready
     window.scrollTo(0, 0);
 
     console.log('NOVAX loaded');
