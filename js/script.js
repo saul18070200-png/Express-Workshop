@@ -1,4 +1,12 @@
-// 1. Force Scroll to Top and Disable Browser Restoration
+// 1. Handle Safari bfcache (back-forward cache) to prevent reload freeze
+window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+        // Page was restored from bfcache - force clean reload
+        window.location.reload();
+    }
+});
+
+// 2. Force Scroll to Top and Disable Browser Restoration
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
