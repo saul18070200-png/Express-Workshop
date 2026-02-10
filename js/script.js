@@ -3,9 +3,18 @@ if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
 
+// Fix for Safari back/forward cache "freeze"
+window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+        window.location.reload();
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     // Verify top position after DOM is ready
-    window.scrollTo(0, 0);
+    if (!window.location.hash) {
+        window.scrollTo(0, 0);
+    }
 
     console.log('NOVAX loaded');
 
