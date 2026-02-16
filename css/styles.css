@@ -926,6 +926,29 @@ label {
 @media (max-width: 768px) {
     .segments__grid {
         grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .segment-card {
+        padding: 30px 25px;
+    }
+
+    .segment-card h3 {
+        font-size: 1.5rem;
+    }
+
+    .segment-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 20px;
+    }
+
+    .segment-icon .material-symbols-outlined {
+        font-size: 28px;
+    }
+
+    .segment-list li {
+        font-size: 0.9rem;
     }
 }
 
@@ -1077,6 +1100,28 @@ label {
     .hero__title {
         font-size: 2.2rem;
     }
+
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .segment-card {
+        padding: 25px 20px;
+    }
+    
+    .segment-card h3 {
+        font-size: 1.3rem;
+    }
+    
+    .segment-card p {
+        font-size: 0.95rem;
+    }
+    
+    .btn--sm {
+        font-size: 0.85rem;
+        padding: 10px 20px;
+    }
+}
 
     .section-title {
         font-size: 2rem;
