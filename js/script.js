@@ -57,11 +57,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Typing Animation
     const typingText = document.getElementById('typing-text');
-    const phrases = ["potencia sistemas críticos", "construye arquitectura de élite", "escala sin improvisar", "diseña alta ingeniería"];
+    const phrases = ["impulsa", "escala", "conecta", "simplifica", "crece"];
     let phraseIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
-    let typeSpeed = 100;
+    let typeSpeed = 150; // Un poco más lento al escribir para que sea legible
 
     function type() {
         const currentPhrase = phrases[phraseIndex];
@@ -69,20 +69,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isDeleting) {
             typingText.textContent = currentPhrase.substring(0, charIndex - 1);
             charIndex--;
-            typeSpeed = 50;
+            typeSpeed = 100; // Borrado rápido
         } else {
             typingText.textContent = currentPhrase.substring(0, charIndex + 1);
             charIndex++;
-            typeSpeed = 100;
+            typeSpeed = 150;
         }
 
         if (!isDeleting && charIndex === currentPhrase.length) {
             isDeleting = true;
-            typeSpeed = 2000; // Pause at end
+            typeSpeed = 2500; // Pausa más larga al final de la palabra para impacto
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
             phraseIndex = (phraseIndex + 1) % phrases.length;
-            typeSpeed = 500; // Pause before new word
+            typeSpeed = 400; // Pausa breve antes de empezar la nueva
         }
 
         setTimeout(type, typeSpeed);
@@ -195,19 +195,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Cursor Logic
-    const cursor = document.querySelector('.custom-cursor-dot');
-    if (cursor) {
-        window.addEventListener('mousemove', (e) => {
-            cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
-        });
-
-        const interactiveElements = document.querySelectorAll('a, button, .service-card, .project-card, input, select, textarea, .custom-select');
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('active'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-        });
-    }
 
     // Magnetic Buttons
     const magneticButtons = document.querySelectorAll('.btn');
@@ -264,7 +251,13 @@ document.addEventListener('DOMContentLoaded', () => {
             option.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const value = option.getAttribute('data-value');
-                const text = option.innerText;
+                // Extraemos solo el texto que no está dentro del span del icono
+                const text = Array.from(option.childNodes)
+                    .filter(node => node.nodeType === 3) // Node.TEXT_NODE
+                    .map(node => node.textContent.trim())
+                    .filter(content => content.length > 0)
+                    .join(' ');
+
                 options.forEach(opt => opt.classList.remove('selected'));
                 option.classList.add('selected');
                 triggerText.innerText = text;

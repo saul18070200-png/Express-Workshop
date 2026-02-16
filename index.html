@@ -25,7 +25,6 @@
 
 <body>
     <canvas id="hero-canvas"></canvas>
-    <div class="custom-cursor-dot"></div>
     <div class="mesh-gradient-bg">
         <div class="mesh-blob blob-1"></div>
         <div class="mesh-blob blob-2"></div>
@@ -36,8 +35,7 @@
     <header class="header">
         <div class="container header__container">
             <a href="#" class="logo">
-                <img src="assets/images/logo.png"
-                    alt="NOVAX Logo" fetchpriority="high">
+                <img src="assets/images/logo.png" alt="NOVAX Logo" fetchpriority="high">
             </a>
             <nav class="nav">
                 <ul class="nav__list">
@@ -63,12 +61,12 @@
             <div class="container hero__container">
                 <div class="hero__content">
                     <h1 class="hero__title">
-                        Ingeniería de Software que <span class="text-gradient" id="typing-text"></span><span
-                            class="cursor-blink">|</span>
+                        Tecnología que <span class="text-gradient"><span id="typing-text"></span><span
+                                class="cursor-blink">|</span></span>
                     </h1>
                     <p class="hero__subtitle">
-                        Desarrollamos sistemas escalables, arquitecturas robustas y soluciones digitales para empresas
-                        que demandan excelencia técnica y resultados estratégicos.
+                        Desde la digitalización de tu negocio local hasta la creación de arquitecturas complejas de
+                        software. Soluciones a la medida de tu escala.
                     </p>
                     <div class="hero__actions">
                         <a href="#contact" class="btn btn--primary">Agendar Consulta de Proyecto</a>
@@ -76,6 +74,43 @@
                     </div>
                 </div>
                 <div class="hero__visual">
+                </div>
+            </div>
+        </section>
+
+        <!-- TARGET SEGMENTATION SECTION -->
+        <section class="segments section">
+            <div class="container">
+                <div class="segments__grid">
+                    <div class="segment-card segment-card--pyme">
+                        <div class="segment-icon">
+                            <span class="material-symbols-outlined">storefront</span>
+                        </div>
+                        <h3>Pequeñas Empresas y Comercio</h3>
+                        <p>Digitalizamos tu presencia, automatizamos tus ventas y te ayudamos a competir en el mundo
+                            moderno con soluciones accesibles.</p>
+                        <ul class="segment-list">
+                            <li><span class="dot"></span> Páginas Web de Alto Impacto</li>
+                            <li><span class="dot"></span> Gestión de Inventarios</li>
+                            <li><span class="dot"></span> Automatización de Turnos</li>
+                        </ul>
+                        <a href="#contact" class="btn btn--secondary btn--sm">Empezar a Crecer</a>
+                    </div>
+
+                    <div class="segment-card segment-card--enterprise">
+                        <div class="segment-icon">
+                            <span class="material-symbols-outlined">precision_manufacturing</span>
+                        </div>
+                        <h3>Infraestructura y Alta Ingeniería</h3>
+                        <p>Desarrollo de sistemas críticos, integración de IA y arquitecturas que soportan millones de
+                            transacciones sin fallos.</p>
+                        <ul class="segment-list">
+                            <li><span class="dot"></span> Sistemas Industriales</li>
+                            <li><span class="dot"></span> Arquitectura de IA</li>
+                            <li><span class="dot"></span> Ciberseguridad Avanzada</li>
+                        </ul>
+                        <a href="#contact" class="btn btn--primary btn--sm">Consulta Especializada</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -337,23 +372,33 @@
                                     <div class="arrow"></div>
                                 </div>
                                 <div class="select-options">
-                                    <div class="option" data-value="consulting">Consultoría en Transformación Digital
+                                    <div class="option-category">Digitalización & Pymes</div>
+                                    <div class="option" data-value="presencia-web">
+                                        <span class="material-symbols-outlined">web</span>
+                                        Presencia Web Estratégica
                                     </div>
-                                    <div class="option" data-value="software">Ingeniería de Software a Medida</div>
-                                    <div class="option" data-value="ecommerce">Arquitectura de E-commerce de Alto
-                                        Rendimiento</div>
-                                    <div class="option" data-value="mobile">Desarrollo de Ecosistemas Móviles
-                                        (iOS/Android)</div>
-                                    <div class="option" data-value="ai">Implementación de Inteligencia Artificial
-                                        Aplicada</div>
-                                    <div class="option" data-value="automation">Automatización de Procesos
-                                        Empresariales
-                                        (RPA)</div>
-                                    <div class="option" data-value="cybersecurity">Auditoría y Estrategia de
-                                        Ciberseguridad</div>
-                                    <div class="option" data-value="design">Diseño de Experiencia de Usuario (UX/UI) de
-                                        Élite</div>
-                                    <div class="option" data-value="support">Gestión y Soporte Técnico</div>
+                                    <div class="option" data-value="gestion-ventas">
+                                        <span class="material-symbols-outlined">shopping_cart</span>
+                                        Sistemas de Gestión & Ventas
+                                    </div>
+                                    <div class="option" data-value="automatizacion-local">
+                                        <span class="material-symbols-outlined">bolt</span>
+                                        Automatización de Procesos Locales
+                                    </div>
+
+                                    <div class="option-category">Ingeniería Enterprise</div>
+                                    <div class="option" data-value="software-medida">
+                                        <span class="material-symbols-outlined">code</span>
+                                        Ingeniería de Software a Medida
+                                    </div>
+                                    <div class="option" data-value="mision-critica">
+                                        <span class="material-symbols-outlined">settings_input_component</span>
+                                        Sistemas de Misión Crítica
+                                    </div>
+                                    <div class="option" data-value="ia-ciberseguridad">
+                                        <span class="material-symbols-outlined">security</span>
+                                        Arquitectura de IA & Ciberseguridad
+                                    </div>
                                 </div>
                             </div>
                             <input type="hidden" name="service" id="serviceInput" required>
@@ -367,10 +412,10 @@
                                     <div class="arrow"></div>
                                 </div>
                                 <div class="select-options">
-                                    <div class="option" data-value="20k-50k">$20,000 - $50,000 MXN</div>
-                                    <div class="option" data-value="50k-100k">$50,000 - $100,000 MXN</div>
-                                    <div class="option" data-value="100k-200k">$100,000 - $200,000 MXN</div>
-                                    <div class="option" data-value="200k+">$200,000+ MXN</div>
+                                    <div class="option" data-value="5k-15k">$5,000 - $15,000 MXN</div>
+                                    <div class="option" data-value="15k-50k">$15,000 - $50,000 MXN</div>
+                                    <div class="option" data-value="50k-150k">$50,000 - $150,000 MXN</div>
+                                    <div class="option" data-value="150k+">$150,000+ MXN</div>
                                     <div class="option" data-value="not_defined">Presupuesto no definido (Sujeto a
                                         análisis)</div>
                                 </div>
@@ -393,8 +438,7 @@
     <footer class="footer">
         <div class="container footer__container">
             <div class="footer__brand">
-                <img src="assets/images/logo.png"
-                    alt="NOVAX" class="footer__logo">
+                <img src="assets/images/logo.png" alt="NOVAX" class="footer__logo">
                 <p>Transformando ideas en realidad digital.</p>
                 <!-- Redes sociales removidas -->
             </div>
