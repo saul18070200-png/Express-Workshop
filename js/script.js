@@ -275,3 +275,4 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.custom-select').forEach(s => s.classList.remove('active'));
     });
 });
+
