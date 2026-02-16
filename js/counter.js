@@ -34,8 +34,8 @@ onSnapshot(counterRef, (docSnap) => {
     if (docSnap.exists()) {
         const data = docSnap.data();
         const currentVal = parseInt(counterElement.innerText.replace(/,/g, '')) || 0;
-        // Animar desde el valor actual al nuevo
-        animateValue(counterElement, currentVal, data.count, 1000);
+        // Animar desde el valor actual al nuevo (2.5 segundos para efecto dramático)
+        animateValue(counterElement, currentVal, data.count, 2500);
     } else {
         // Si es la primera vez y no existe, lo creamos
         console.log("Creando contador inicial...");
