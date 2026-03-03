@@ -1104,27 +1104,22 @@ label {
     .section-title {
         font-size: 2rem;
     }
-    
+
     .segment-card {
         padding: 25px 20px;
     }
-    
+
     .segment-card h3 {
         font-size: 1.3rem;
     }
-    
+
     .segment-card p {
         font-size: 0.95rem;
     }
-    
+
     .btn--sm {
         font-size: 0.85rem;
         padding: 10px 20px;
-    }
-}
-
-    .section-title {
-        font-size: 2rem;
     }
 }
 
@@ -1190,12 +1185,75 @@ label {
         padding: 4px 10px;
         margin-right: 10px;
     }
-    
+
     .header__counter .icon {
         font-size: 16px;
     }
-    
+
     #visit-count-header {
         font-size: 0.8rem;
+    }
+}
+
+/* Authority Block Section */
+.authority {
+    background: transparent;
+    /* Eliminamos el fondo sólido */
+    position: relative;
+    padding: 60px 0 100px;
+}
+
+.authority__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.authority-item {
+    text-align: center;
+    padding: 40px 30px;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 25px;
+}
+
+.authority-check {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-weight: 800;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+    margin: 0 auto 10px;
+}
+
+.authority-item h4 {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+.authority-item p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .authority {
+        padding: 40px 0 80px;
+    }
+
+    .authority__grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
     }
 }
