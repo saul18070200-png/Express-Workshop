@@ -42,7 +42,7 @@ const CorralesModule = () => {
     animales.filter(a => a.corral_id === corralId && a.estado === 'Activo');
 
   return (
-    <div className="space-y-8 animate-in slide-in-from-bottom-4 duration-500 mt-20 md:mt-0">
+    <div className="space-y-8 animate-in slide-in-from-bottom-4 duration-500 mt-4 md:mt-0">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-4xl font-black text-primary tracking-tight">Corrales</h1>
@@ -151,8 +151,8 @@ const CorralesModule = () => {
                 const isWeaningDue = weaningDate && (today > weaningDate);
 
                 return (
-                  <div key={animal.id} className="p-6 rounded-[2rem] bg-gray-50 border border-gray-100 space-y-4">
-                    <div className="flex items-center justify-between">
+                  <div key={animal.id} className="p-4 md:p-6 rounded-[2rem] bg-gray-50 border border-gray-100 space-y-4">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                       <div className="flex items-center gap-4">
                         <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center font-black text-primary shadow-sm text-lg border border-primary/5">
                           {animal.tagId}
@@ -162,14 +162,15 @@ const CorralesModule = () => {
                           <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{animal.peso_inicial} kg Inicial</p>
                         </div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <div className="text-right mr-4">
-                          <p className="font-black text-primary text-xl">${animal.costo_acumulado?.toFixed(2)}</p>
+                      
+                      <div className="flex items-center justify-between md:justify-end gap-2 bg-white/50 md:bg-transparent p-3 md:p-0 rounded-2xl border border-gray-100 md:border-transparent">
+                        <div className="text-left md:mr-4">
                           <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Inversión</p>
+                          <p className="font-black text-primary text-xl">${animal.costo_acumulado?.toFixed(2)}</p>
                         </div>
-                        <div className="flex flex-col gap-2">
+                        <div className="flex flex-col gap-2 w-32 md:w-auto">
                           <select 
-                            className="p-2 bg-white border border-gray-100 rounded-lg text-[9px] font-black uppercase text-gray-500 outline-none focus:border-primary/20"
+                            className="p-3 md:p-2 bg-white border border-gray-100 rounded-xl text-[9px] font-black uppercase text-gray-500 outline-none focus:border-primary/20"
                             onChange={(e) => updateDocument('animales', animal.id, { corral_id: e.target.value })}
                             value={animal.corral_id}
                           >

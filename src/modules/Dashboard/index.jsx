@@ -94,7 +94,7 @@ const Dashboard = () => {
 
 
   return (
-    <div className="space-y-8 animate-in mt-20 md:mt-0 fade-in duration-700">
+    <div className="space-y-8 animate-in mt-4 md:mt-0 fade-in duration-700">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <h1 className="text-4xl font-black text-primary tracking-tight">Panel de Control</h1>

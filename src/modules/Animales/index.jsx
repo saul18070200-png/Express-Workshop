@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Beef, Plus, Search, Filter, Hash, Weight, Calendar, DollarSign, ChevronRight, Home, Users, Trash2, Layers } from 'lucide-react';
 import { subscribeToCollection, addDocument, deleteDocument, updateDocument } from '../../lib/firestore';
+import ConfirmModal from '../../components/ConfirmModal';
 
 const AnimalesModule = () => {
   const [animales, setAnimales] = useState([]);
@@ -25,11 +26,32 @@ const AnimalesModule = () => {
   const [selectedAnimal, setSelectedAnimal] = useState(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editForm, setEditForm] = useState({});
+  const [confirmState, setConfirmState] = useState(null);
 
   const handleEditClick = (animal) => {
     setSelectedAnimal(animal);
     setEditForm(animal);
     setIsEditModalOpen(true);
+  };
+
+  const handleAddAnimal = async (e) => {
+    e.preventDefault();
+    if (!newAnimal.tagId || !newAnimal.corral_id) return;
+    try {
+      await addDocument('animales', {
+        ...newAnimal,
+        peso_inicial: Number(newAnimal.peso_inicial),
+        precio_compra: Number(newAnimal.precio_compra),
+        costo_acumulado: Number(newAnimal.precio_compra)
+      });
+      setIsModalOpen(false);
+      setNewAnimal({
+        tagId: '', peso_inicial: '', sexo: 'Macho', precio_compra: '',
+        corral_id: '', estado: 'Activo', fecha_ingreso: new Date().toISOString().split('T')[0]
+      });
+    } catch (error) {
+      console.error("Error adding animal:", error);
+    }
   };
 
   const handleUpdateAnimal = async (e) => {
@@ -96,7 +118,7 @@ const AnimalesModule = () => {
   const filteredAnimals = animales.filter(a => a.estado === activeTab);
 
   return (
-    <div className="space-y-8 animate-in slide-in-from-bottom-4 duration-500 pb-12 mt-20 md:mt-0">
+    <div className="space-y-8 animate-in slide-in-from-bottom-4 duration-500 pb-12 mt-4 md:mt-0">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-4xl font-black text-primary tracking-tight">Inventario</h1>
@@ -147,7 +169,8 @@ const AnimalesModule = () => {
         </div>
       </div>
 
-      <div className="table-container bg-white">
+      {/* Desktop Table */}
+      <div className="table-container bg-white hidden md:block">
         <table className="min-w-full">
           <thead>
             <tr>
@@ -221,15 +244,76 @@ const AnimalesModule = () => {
             ))}
           </tbody>
         </table>
-        {filteredAnimals.length === 0 && (
-          <div className="p-20 text-center">
-            <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4 text-gray-200">
-              <Beef size={40} />
-            </div>
-            <h4 className="text-xl font-bold text-gray-400">No hay animales en esta categoría</h4>
-          </div>
-        )}
       </div>
+
+      {/* Mobile Inventory Cards */}
+      <div className="md:hidden space-y-4">
+        {filteredAnimals.map(animal => (
+          <div key={animal.id} className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 space-y-6">
+            <div className="flex items-start justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-2xl bg-primary/5 flex items-center justify-center font-black text-primary text-lg border border-primary/10">
+                  {animal.tagId}
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className={`px-2 py-0.5 rounded-lg text-[8px] font-black uppercase tracking-widest ${animal.sexo === 'Hembra' ? 'bg-pink-100 text-pink-600' : 'bg-blue-100 text-blue-600'}`}>
+                      {animal.sexo}
+                    </span>
+                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">
+                      {corrales.find(c => c.id === animal.corral_id)?.nombre || 'Sin corral'}
+                    </span>
+                  </div>
+                  <p className="text-xs font-bold text-gray-400 mt-1">{animal.fecha_ingreso}</p>
+                </div>
+              </div>
+              <div className="flex gap-2">
+                <button onClick={() => handleEditClick(animal)} className="p-3 bg-gray-50 rounded-xl text-primary"><ChevronRight size={20} /></button>
+                <button 
+                  onClick={async () => {
+                    if(window.confirm(`¿Eliminar permanentemente TAG: ${animal.tagId}?`)) {
+                      await deleteDocument('animales', animal.id);
+                    }
+                  }}
+                  className="p-3 bg-red-50 rounded-xl text-red-500"
+                >
+                  <Trash2 size={20} />
+                </button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-50">
+              <div>
+                <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">Peso {activeTab === 'Activo' ? 'Inicial' : 'Final'}</p>
+                <p className="text-lg font-black text-gray-700">{activeTab === 'Activo' ? animal.peso_inicial : animal.peso_final} kg</p>
+                {activeTab === 'Vendido' && (
+                  <p className="text-[10px] font-black text-green-600">+{(animal.peso_final - animal.peso_inicial).toFixed(1)} kg Ganado</p>
+                )}
+              </div>
+              <div className="text-right">
+                <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">{activeTab === 'Activo' ? 'Inversión Total' : 'Precio Venta'}</p>
+                <p className="text-lg font-black text-primary">
+                  ${(activeTab === 'Activo' ? animal.costo_acumulado : animal.precio_venta)?.toFixed(2)}
+                </p>
+                {activeTab === 'Vendido' && (
+                  <p className={`text-[10px] font-black ${animal.precio_venta - animal.costo_acumulado >= 0 ? 'text-primary' : 'text-red-500'}`}>
+                    Utilidad: ${(animal.precio_venta - animal.costo_acumulado).toFixed(2)}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      {filteredAnimals.length === 0 && (
+        <div className="p-20 text-center bg-gray-50/50 rounded-[2.5rem] border-2 border-dashed border-gray-100">
+          <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4 text-gray-200 shadow-sm">
+            <Beef size={40} />
+          </div>
+          <h4 className="text-xl font-bold text-gray-400">No hay animales en esta categoría</h4>
+          <p className="text-gray-400 font-medium mt-1 italic">Comienza registrando uno nuevo arriba.</p>
+        </div>
+      )}
 
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-center z-[200] p-4">
@@ -346,9 +430,10 @@ const AnimalesModule = () => {
                 </div>
                 {bulkAnimals.map((animal, idx) => (
                   <div key={idx} className="grid grid-cols-1 md:grid-cols-12 gap-3 p-4 bg-gray-50 rounded-2xl border border-transparent hover:border-primary/10 transition-colors">
-                    <div className="col-span-3">
+                    <div className="col-span-1 md:col-span-3">
+                      <label className="md:hidden block text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">Tag / ID Animal {idx+1}</label>
                       <input 
-                        placeholder={`# Tag Animal ${idx+1}`}
+                        placeholder={`# Tag`}
                         className="w-full p-3 bg-white border border-gray-100 rounded-xl text-sm font-bold outline-none focus:border-primary/30"
                         value={animal.tagId}
                         onChange={(e) => {
@@ -358,7 +443,8 @@ const AnimalesModule = () => {
                         }}
                       />
                     </div>
-                    <div className="col-span-2">
+                    <div className="col-span-1 md:col-span-2">
+                      <label className="md:hidden block text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">Sexo</label>
                       <select 
                         className="w-full p-3 bg-white border border-gray-100 rounded-xl text-sm font-bold outline-none"
                         value={animal.sexo}
@@ -372,10 +458,11 @@ const AnimalesModule = () => {
                         <option value="Hembra">Hembra</option>
                       </select>
                     </div>
-                    <div className="col-span-3">
+                    <div className="col-span-1 md:col-span-3">
+                      <label className="md:hidden block text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">Peso kg</label>
                       <input 
                         type="number"
-                        placeholder="Peso kg"
+                        placeholder="Peso"
                         className="w-full p-3 bg-white border border-gray-100 rounded-xl text-sm font-bold outline-none"
                         value={animal.peso_inicial}
                         onChange={(e) => {
@@ -385,10 +472,11 @@ const AnimalesModule = () => {
                         }}
                       />
                     </div>
-                    <div className="col-span-4">
+                    <div className="col-span-1 md:col-span-4">
+                      <label className="md:hidden block text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">Precio $</label>
                       <input 
                         type="number"
-                        placeholder="Precio $"
+                        placeholder="Precio"
                         className="w-full p-3 bg-white border border-gray-100 rounded-xl text-sm font-bold outline-none"
                         value={animal.precio_compra}
                         onChange={(e) => {

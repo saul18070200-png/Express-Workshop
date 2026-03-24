@@ -67,7 +67,7 @@ const VentasModule = () => {
   const netProfit = calculatedTotal - (selectedAnimal.costo_acumulado || 0);
 
   return (
-    <div className="space-y-8 animate-in slide-in-from-bottom-4 duration-500 pb-12 mt-20 md:mt-0">
+    <div className="space-y-8 animate-in slide-in-from-bottom-4 duration-500 pb-12 mt-4 md:mt-0">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-4xl font-black text-primary tracking-tight">Utilidad</h1>
@@ -87,40 +87,40 @@ const VentasModule = () => {
 
           return (
             <div key={venta.id} className="glass-card p-0 overflow-hidden group">
-              <div className="p-6 bg-primary/5 flex items-center justify-between border-b border-white/40">
+              <div className="p-4 md:p-6 bg-primary/5 flex items-center justify-between border-b border-white/40">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-white rounded-xl text-primary shadow-sm group-hover:rotate-12 transition-transform">
-                    <Hash size={20} />
+                    <Hash size={18} md:size={20} />
                   </div>
                   <div>
-                    <span className="font-black text-primary tracking-tighter text-lg">Lote {animal.tagId || '?' }</span>
-                    <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{animal.sexo || 'N/A'}</p>
+                    <span className="font-black text-primary tracking-tighter text-base md:text-lg">Lote {animal.tagId || '?' }</span>
+                    <p className="text-[8px] md:text-[9px] font-black text-gray-400 uppercase tracking-widest">{animal.sexo || 'N/A'}</p>
                   </div>
                 </div>
                 <div className="text-right">
-                  <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest bg-white/80 px-4 py-2 rounded-full border border-gray-100 shadow-sm">{venta.fecha}</span>
+                  <span className="text-[8px] md:text-[10px] font-black text-gray-400 uppercase tracking-widest bg-white/80 px-3 md:px-4 py-1 md:py-2 rounded-full border border-gray-100 shadow-sm">{venta.fecha}</span>
                 </div>
               </div>
               
-              <div className="p-8 space-y-10">
-                <div className="flex justify-between items-center px-4 relative">
+              <div className="p-6 md:p-8 space-y-6 md:space-y-10">
+                <div className="flex justify-between items-center md:px-4 relative">
                   <div className="text-center">
-                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Costo Total</p>
-                    <p className="text-2xl font-black text-gray-700 tracking-tighter">${totalCost.toLocaleString()}</p>
+                    <p className="text-[8px] md:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 md:mb-2">Costo Total</p>
+                    <p className="text-xl md:text-2xl font-black text-gray-700 tracking-tighter">${totalCost.toLocaleString()}</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">P. Venta</p>
-                    <p className="text-2xl font-black text-primary tracking-tighter">${venta.precio?.toLocaleString()}</p>
+                    <p className="text-[8px] md:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 md:mb-2">P. Venta</p>
+                    <p className="text-xl md:text-2xl font-black text-primary tracking-tighter">${venta.precio?.toLocaleString()}</p>
                   </div>
                 </div>
 
-                <div className={`p-8 rounded-[2.5rem] flex flex-col items-center justify-center gap-2 border shadow-lg transition-all group-hover:shadow-2xl ${
+                <div className={`p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] flex flex-col items-center justify-center gap-1 md:gap-2 border shadow-lg transition-all group-hover:shadow-2xl ${
                   isPositive ? 'bg-green-50/50 border-green-100 shadow-green-900/5' : 'bg-red-50/50 border-red-100 shadow-red-900/5'
                 }`}>
-                  <span className={`text-[10px] font-black uppercase tracking-widest ${isPositive ? 'text-green-600' : 'text-red-600'}`}>Net Profit per Unit</span>
-                  <div className="flex items-center gap-3">
-                    {isPositive ? <TrendingUp size={32} className="text-green-600" /> : <ActivityIcon size={32} className="text-red-600" />}
-                    <h4 className={`text-5xl font-black tracking-tighter ${isPositive ? 'text-green-700' : 'text-red-700'}`}>
+                  <span className={`text-[8px] md:text-[10px] font-black uppercase tracking-widest ${isPositive ? 'text-green-600' : 'text-red-600'}`}>Net Profit per Unit</span>
+                  <div className="flex items-center gap-2 md:gap-3">
+                    {isPositive ? <TrendingUp size={24} md:size={32} className="text-green-600" /> : <ActivityIcon size={24} md:size={32} className="text-red-600" />}
+                    <h4 className={`text-3xl md:text-5xl font-black tracking-tighter ${isPositive ? 'text-green-700' : 'text-red-700'}`}>
                       {isPositive ? '+' : ''}${profit.toFixed(2)}
                     </h4>
                   </div>
